@@ -19,18 +19,19 @@ import java.util.List;
 @PropertySource({"classpath:data-source.properties"})
 @EnableMongoRepositories(basePackages = "dbdemo.mongo.repositories")
 public class DataSourceConfig extends AbstractMongoConfiguration {
-	@Autowired private Environment env;
+    @Autowired
+    private Environment env;
 
-	@Override
-	public String getDatabaseName(){
-		return env.getRequiredProperty("mongo.name");
-	}
+    @Override
+    public String getDatabaseName() {
+        return env.getRequiredProperty("mongo.name");
+    }
 
-	@Override
-	@Bean
-	public Mongo mongo() throws Exception {
-		ServerAddress serverAddress = new ServerAddress(env.getRequiredProperty("mongo.host"));
-		List<MongoCredential> credentials = new ArrayList<>();
-		return new MongoClient(serverAddress, credentials);
-	}
+    @Override
+    @Bean
+    public Mongo mongo() throws Exception {
+        ServerAddress serverAddress = new ServerAddress(env.getRequiredProperty("mongo.host"));
+        List<MongoCredential> credentials = new ArrayList<>();
+        return new MongoClient(serverAddress, credentials);
+    }
 }
