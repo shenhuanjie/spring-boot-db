@@ -29,9 +29,9 @@ public class RedisListTest {
     UserRedis userRedis;
 
     @Before
-    public void setup(){
-        Department deparment = new Department();
-        deparment.setName("开发部");
+    public void setup() {
+        Department department = new Department();
+        department.setName("开发部");
 
         Role role = new Role();
         role.setName("admin");
@@ -39,7 +39,7 @@ public class RedisListTest {
         User user = new User();
         user.setName("user");
         user.setCreatedate(new Date());
-        user.setDeparment(deparment);
+        user.setDepartment(department);
 
         List<Role> roles = new ArrayList<>();
         roles.add(role);
@@ -49,18 +49,18 @@ public class RedisListTest {
         List<User> users = new ArrayList<>();
         users.add(user);
 
-        userRedis.delete(this.getClass().getName()+":userList:"+user.getName());
-        userRedis.add(this.getClass().getName()+":userList:"+user.getName(), 10L, users);
+        userRedis.delete(this.getClass().getName() + ":userList:" + user.getName());
+        userRedis.add(this.getClass().getName() + ":userList:" + user.getName(), 10L, users);
 
     }
 
     @Test
-    public void get(){
+    public void get() {
         List<User> users = userRedis.getList(this.getClass().getName() + ":userList:user");
         Assert.notNull(users);
-        for(User user : users) {
-            logger.info("======user====== name:{}, deparment:{}, role:{}",
-                    user.getName(), user.getDeparment().getName(), user.getRoles().get(0).getName());
+        for (User user : users) {
+            logger.info("======user====== name:{}, department:{}, role:{}",
+                    user.getName(), user.getDepartment().getName(), user.getRoles().get(0).getName());
         }
     }
 }

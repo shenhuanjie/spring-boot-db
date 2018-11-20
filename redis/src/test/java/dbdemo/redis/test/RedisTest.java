@@ -29,9 +29,9 @@ public class RedisTest {
     UserRedis userRedis;
 
     @Before
-    public void setup(){
-        Department deparment = new Department();
-        deparment.setName("开发部");
+    public void setup() {
+        Department department = new Department();
+        department.setName("开发部");
 
         Role role = new Role();
         role.setName("admin");
@@ -39,23 +39,23 @@ public class RedisTest {
         User user = new User();
         user.setName("user");
         user.setCreatedate(new Date());
-        user.setDeparment(deparment);
+        user.setDepartment(department);
 
         List<Role> roles = new ArrayList<>();
         roles.add(role);
 
         user.setRoles(roles);
 
-        userRedis.delete(this.getClass().getName()+":userByname:"+user.getName());
-        userRedis.add(this.getClass().getName()+":userByname:"+user.getName(), 10L, user);
+        userRedis.delete(this.getClass().getName() + ":userByName:" + user.getName());
+        userRedis.add(this.getClass().getName() + ":userByName:" + user.getName(), 10L, user);
 
     }
 
     @Test
-    public void get(){
-        User user = userRedis.get(this.getClass().getName() + ":userByname:user");
+    public void get() {
+        User user = userRedis.get(this.getClass().getName() + ":userByName:user");
         Assert.notNull(user);
-        logger.info("======user====== name:{}, deparment:{}, role:{}",
-                user.getName(), user.getDeparment().getName(), user.getRoles().get(0).getName());
+        logger.info("======user====== name:{}, department:{}, role:{}",
+                user.getName(), user.getDepartment().getName(), user.getRoles().get(0).getName());
     }
 }
