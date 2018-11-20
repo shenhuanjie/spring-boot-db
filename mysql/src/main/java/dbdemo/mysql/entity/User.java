@@ -1,7 +1,6 @@
 package dbdemo.mysql.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "user")
-public class User implements java.io.Serializable{
+public class User implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +20,7 @@ public class User implements java.io.Serializable{
     @ManyToOne
     @JoinColumn(name = "did")
     @JsonBackReference
-    private Department deparment;
+    private Department department;
 
     @ManyToMany(cascade = {}, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
@@ -56,12 +55,12 @@ public class User implements java.io.Serializable{
         this.createdate = createdate;
     }
 
-    public Department getDeparment() {
-        return deparment;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDeparment(Department deparment) {
-        this.deparment = deparment;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public List<Role> getRoles() {
