@@ -28,7 +28,7 @@ public class MovieTest {
     ActorRepository actorRepository;
 
     @Before
-    public void initData(){
+    public void initData() {
         movieRepository.deleteAll();
         actorRepository.deleteAll();
 
@@ -53,15 +53,15 @@ public class MovieTest {
         Actor carrieanne = new Actor();
         carrieanne.setName("Carrie-Anne Moss");
 
-        matrix1.addRole(keanu,  "Neo");
+        matrix1.addRole(keanu, "Neo");
         matrix1.addRole(laurence, "Morpheus");
-        matrix1.addRole(carrieanne,  "Trinity");
+        matrix1.addRole(carrieanne, "Trinity");
         movieRepository.save(matrix1);
         Assert.notNull(matrix1.getId());
 
         matrix2.addRole(keanu, "Neo");
         matrix2.addRole(laurence, "Morpheus");
-        matrix2.addRole(carrieanne,  "Trinity");
+        matrix2.addRole(carrieanne, "Trinity");
         movieRepository.save(matrix2);
         Assert.notNull(matrix2.getId());
 
@@ -73,11 +73,11 @@ public class MovieTest {
     }
 
     @Test
-    public void get(){
+    public void get() {
         Movie movie = movieRepository.findByTitle("The Matrix");
         Assert.notNull(movie);
-        logger.info("===movie=== movie:{}, {}",movie.getTitle(), movie.getYear());
-        for(Role role : movie.getRoles()){
+        logger.info("===movie=== movie:{}, {}", movie.getTitle(), movie.getYear());
+        for (Role role : movie.getRoles()) {
             logger.info("====== actor:{}, role:{}", role.getActor().getName(), role.getRole());
         }
     }

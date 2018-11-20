@@ -6,14 +6,16 @@ import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 
-@JsonIdentityInfo(generator=JSOGGenerator.class)
+@JsonIdentityInfo(generator = JSOGGenerator.class)
 @NodeEntity
 public class Actor {
-    @GraphId Long id;
+    @GraphId
+    Long id;
     private String name;
     private int born;
 
-    public Actor() { }
+    public Actor() {
+    }
 
     public String getName() {
         return name;

@@ -8,9 +8,7 @@ import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
-import java.util.Collection;
-
-@JsonIdentityInfo(generator=JSOGGenerator.class)
+@JsonIdentityInfo(generator = JSOGGenerator.class)
 @RelationshipEntity(type = "ACTS_IN")
 public class Role {
     @GraphId
